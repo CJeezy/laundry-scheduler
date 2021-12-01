@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import LoginForm from './components/LoginForm'
+import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
+
 
 function App() {
 
@@ -16,7 +18,7 @@ function App() {
     console.log(details);
 
     //THIS SHOULD BE CHANGED TO VALUES INSIDE DATABASE
-    if(details.email == adminUser.email && details.password == adminUser.password){
+    if(details.email === adminUser.email && details.password === adminUser.password){
       console.log("Logged In")
       
       setUser({
@@ -24,8 +26,8 @@ function App() {
         email: details.email
       });
     }else{
-      console.log("Details do not match!")
-      setError("Details do not match!")
+      console.log("Incorrect username or password")
+      setError("Incorrect username or password!")
     }
   }
 
@@ -40,11 +42,28 @@ function App() {
 
   return (
     <div className="Login">
-      {(user.email != "") ? (
+      {(user.email !== "") ? (
         <div className="welcome">
           <h2>Welcome, <span>{user.name}</span></h2>
-          <button></button>
-          <button onClick={Logout}>Logout</button>
+          <div className="buttons">
+            <button>Add Reservation</button>
+            {/* DATE AND TIME PICKER */}
+
+            <div>
+      <DateTimePickerComponent placeholder="Choose a date and time"
+      value={dateValue}
+      min={minDate}
+      max={maxDate}
+      format="dd-MMM-yy HH:mm"
+      step={60}></DateTimePickerComponent>
+    </div>
+
+
+            <div class="divider"/>
+            <button>Delete Reservation</button>
+            <div class="divider"/>
+            <button onClick={Logout}>Logout</button>
+          </div>
         </div>
       ) : (
         <LoginForm Login={Login} error={error}/>
