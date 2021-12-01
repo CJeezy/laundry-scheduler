@@ -103,3 +103,13 @@ form .form-inner input[type="submit"],
     font-weight: 500;
     margin-bottom: 30px;
 }
+
+.buttons{
+    justify-content: center;
+}
+
+.divider{
+    width:15px;
+    height:auto;
+    display:inline-block;
+}
